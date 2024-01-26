@@ -11,13 +11,13 @@ const storage = multer.diskStorage({
       try {
         //fs.accessSync('/userAttachments', fs.constants.R_OK | fs.constants.W_OK);
          if (!fs.existsSync(folderName)) {
-           //fs.mkdirSync(folderName);
-           console.log(__dirname)
+           fs.mkdirSync(folderName);
+           //console.log(__dirname)
          }
        } catch (err) {
          console.error(err);
        }
-      callback(null, __dirname + `/userAttachments/${req.user.userID}`);
+      //callback(null, __dirname + `/userAttachments/${req.user.userID}`);
       
    },
    filename: function(req,file,callback) {
