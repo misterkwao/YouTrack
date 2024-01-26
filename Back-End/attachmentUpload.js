@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req,file,callback) {
-      const folderName = `/opt/render/project/src/Back-End/userAttachments/${req.user.userID}`;
+      const folderName =  __dirname + `/userAttachments/${req.user.userID}`;
 
       //checking if userfolder already exists
       try {
