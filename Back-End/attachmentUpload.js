@@ -5,14 +5,14 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req,file,callback) {
-      const folderName =  __dirname + `/userAttachments/${req.user.userID}`;
+      const folderName = `/userAttachments/${req.user.userID}`;
 
       //checking if userfolder already exists
       try {
         //fs.accessSync('/userAttachments', fs.constants.R_OK | fs.constants.W_OK);
          if (!fs.existsSync(folderName)) {
-           fs.mkdirSync(folderName);
-           console.log("folder created successfully")
+           //fs.mkdirSync(folderName);
+           console.log(__dirname)
          }
        } catch (err) {
          console.error(err);
