@@ -1,0 +1,48 @@
+<div class="main">
+        <div class="notifySign" [ngClass]="{'remove':removeNotify}" >Success</div>
+        <div class="fstRow">
+            <div class="profile">
+                <h1>Profile</h1>
+                <div class="sub-cont">
+                    <div class="picture">
+                        <p>Profile picture</p>
+                        <input type="file" name="profilepic" id="profilepic" #profilepic>
+                        <button class="save-btn one" (click)="updateUser('profilePic', profilepic)" [disabled]="!profilepic.files"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerP"></mat-spinner><span [hidden]="showSpinnerP">Upload</span></button>
+                    </div>
+                    <div class="name">
+                        <p>Change name</p>
+                        <input type="text" id="username" placeholder="New username..."name="username" #username="ngModel" ngModel>
+                        <button class="save-btn two" (click)="updateUser('username',username.value)" [disabled]="!username.value"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerU"></mat-spinner><span [hidden]="showSpinnerU">Change</span></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="options">
+                <h1>Options</h1>
+                <div class="sub-cont">
+                    <div class="category">
+                     <p>Category</p>
+                        <input type="text" id="username" placeholder="Add category..." name="category" [(ngModel)]="categoryValue" (input)="categoryField()">
+                        <button class="save-btn two" (click)="updateUser('category',categoryValue)" [disabled]="activateCatBtn"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerC"></mat-spinner><span [hidden]="showSpinnerC">Add</span></button>
+                    </div>
+                    <div class="filter">
+                       <p>Filter By</p>
+                       <button class="save-btn fltrtop" (click)="updateUser('filterW', 'week')"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerFw"></mat-spinner><span [hidden]="showSpinnerFw">This Week</span></button>
+                       <button class="save-btn fltrbottom" (click)="updateUser('filterY', 'year')"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerFy"></mat-spinner><span [hidden]="showSpinnerFy">This Year</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="sndRow">
+            <div class="currency-type">
+                <h2>Change Currency</h2>
+                <div class="sub-cont-currency">
+                    <input type="text"placeholder="Type a currency...." id="chgcurrency" name="currency" #currency="ngModel" ngModel>
+                    <button class="save-btn two" (click)="updateUser('currency',currency.value)" [disabled]="!currency.value"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerCr"></mat-spinner><span [hidden]="showSpinnerCr">Change</span></button>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="thirdRow">
+            <button class="delete" (click)="deleteUser()">Delete Account</button>
+           </div>   -->
+</div>

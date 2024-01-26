@@ -1,0 +1,138 @@
+<div class="main" *ngIf="allUsersData">
+     <div class="blur_bg" *ngIf="showFormValue">
+         <div class="create_user">
+
+            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg === 'User created'">Success</div>
+            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg != 'User created'">Failed</div>
+
+            <p style="text-align: center; font-size: 20px; padding-top: 10px;">Create New User</p>
+            <form #createuserform="ngForm" (ngSubmit)="createUser(username.value,email.value,pass2.value,level.value)">
+                 <label for="name">Full Name</label><br>
+                 <input type="text" name="username" #username="ngModel" required ngModel><br>
+                 <label for="email">Email</label><br>
+                 <input type="email" name="email" id="email" #email="ngModel" required ngModel><br>
+                 <label for="password">Password</label><br>
+                 <input type="password" name="password1" id="password1" #pass1="ngModel" required ngModel><br>
+                 <label for="confirmpass">Confirm Password</label><br>
+                 <input type="password" name="password2" id="password2" #pass2="ngModel" required ngModel><br>
+                  <p *ngIf="pass1.value != pass2.value" style="color: red;">Passwords don't match</p>
+                 <label for="Level"> User Level</label><br>
+                 <select name="levels" id="levels" #level="ngModel" required ngModel>
+                    <option value="Level 1">Level 1</option>
+                    <option value="Level 2">Level 2</option>
+                 </select><br>
+                 <label for="permissions">Permissions</label>
+                 <div class="permission_card">
+                    <div class="level_1" *ngIf="level.value === 'Level 1'">
+                        <span>create</span>
+                        <span>update</span>
+                        <span>delete</span>
+                    </div>
+                    <div class="level_2" *ngIf="level.value === 'Level 2'">
+                        <span>create</span>
+                        <span>update</span>
+                        <span>delete</span>
+                        <span>Edit User Record</span>
+                    </div>
+                 </div>
+                 <div class="buttons">
+                    <button [disabled]="(createuserform.invalid) " ><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner><span [hidden]="showSpinner" class="text">Save</span></button> 
+                    <span class="cancel" (click)="showForm()">Cancel</span>
+                 </div>
+                 </form>
+         </div>
+     </div>
+
+     <!-- edit user form -->
+     <div class="blur_bg" *ngIf="showEditUserFormValue">
+        <div class="edit_user">
+
+           <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="editResponse && editResponse.msg === 'Edit successful'">Success</div>
+           <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="editResponse && editResponse.msg != 'Edit successful'">Failed</div>
+
+           <p style="text-align: center; font-size: 20px; padding-top: 10px;">Edit User permissions</p>
+           <form #createuserform="ngForm" (ngSubmit)="editUser(level.value)">
+                <label for="name">Name</label><br>
+                <input type="text" name="username" [readOnly]="true" [(ngModel)]="username"><br>
+   
+                <label for="Level"> User Level (with permissions)</label><br>
+                <select name="levels" id="levels" #level="ngModel" required ngModel>
+                   <option value="Level 1">Level 1</option>
+                   <option value="Level 2">Level 2 (Full Permissions)</option>
+                   <option value="Level 2e">Level 2 (without "eur")</option>
+                </select><br>
+                <label for="permissions">Permissions</label>
+                <div class="permission_card">
+                   <div class="level_1" *ngIf="level.value === 'Level 1'">
+                       <span>create</span>
+                       <span>update</span>
+                       <span>delete</span>
+                   </div>
+                   <div class="level_2" *ngIf="level.value === 'Level 2'">
+                       <span>create</span>
+                       <span>update</span>
+                       <span>delete</span>
+                       <span>Edit User Record</span>
+                   </div>
+                   <div class="level_2e" *ngIf="level.value === 'Level 2e'">
+                    <span>create</span>
+                    <span>update</span>
+                    <span>delete</span>
+                </div>
+                </div>
+                <div class="buttons">
+                   <button [disabled]="(createuserform.invalid) " ><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner><span [hidden]="showSpinner" class="text">Save</span></button> 
+                   <span class="cancel" (click)="closeEditUserForm()">Cancel</span>
+                </div>
+                </form>
+        </div>
+    </div>
+
+    <div class="top">
+        <div>
+            <h2>User Management</h2><p>Create and manage user activities</p>
+        </div>
+        <div>
+            <input type="search" name="search" id="search" placeholder="Search user.." [(ngModel)]="searchValue">
+            <button (click)="showForm()" class="add_user">Add User</button>
+        </div>
+    </div>
+    <div class="middle">
+        <div class="first">Users <span>{{allUsersData.userTotal}}</span></div>
+    </div>
+
+
+    <div class="prompt" [hidden]="showPromptValue">
+        <p>Are you sure ?</p>
+        <span class="yes" style="cursor: pointer; color: red;"(click)="deleteUser()">Yes</span>&nbsp;&nbsp;&nbsp;<span class="no" style="cursor: pointer;" (click)="closePrompt()">Cancel</span>
+    </div>
+
+    
+
+   <!--Table-->
+   <div class="table-container">
+    <div class="table">
+        <div class="table-headings">
+                <span class="user">User</span>
+                <span class="created">Created</span>
+                <span class="level">Level</span>
+                <span class="permissions">permissions</span>
+                <span class="action">Actions</span>
+            </div>
+        <div class="scrollView">
+            <ul>
+                <li *ngFor="let user of allUsersData.users | adminusersfilter : searchValue" id="{{user.owner}}" #listData>
+                    <span class="user">
+                        <span class="img"><img crossorigin='anonymous' [src]= user.profilePictureURL  alt="" srcset=""></span>
+                        <span class="name">{{user.user}}</span>
+                    </span>
+                    <span class="created">{{user.createdAt | date: 'mediumDate'}}</span>
+                    <span class="level">{{user.role}}</span>
+                    <span class="permissions"><span *ngFor="let permission of user.permissions">{{permission}}</span></span>
+                    <span class="actions"><mat-icon class="icon edit" (click)="showeditUserForm(listData.id)">edit</mat-icon><mat-icon class="icon del" (click)="showPrompt(listData.id)">delete</mat-icon></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>

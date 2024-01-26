@@ -1,0 +1,39 @@
+<div class="main">
+    <div class="side-panel">  
+      <img src="../../../assets/Resources/Images/F2Illustration.jpg" alt="" srcset="" [hidden]="formvalue">
+      <img src="../../../assets/Resources/Images/financeillustration.jpg" alt="" srcset="" [hidden]="!(formvalue)">
+    </div>
+    <div class="login-panel">
+       <div class="container">
+         <h1>Welcome To YouTrack,<br>Sign In To Continue</h1>
+         <p>Your Expenses, in one place</p>
+            <div class="login" [hidden]="formvalue">
+              <div class="notifyLog" *ngIf="loginResponse && loginResponse.msg == 'Invalid Credentials'"> <img src="../../../assets/Resources/Images/prohibition.png" alt="" srcset="" style="padding-right: 15px;">{{loginResponse.msg}} <br>Please check your credentials</div>
+              <form #logInform="ngForm" (ngSubmit)="logIn(email.value,password.value)">
+                Email<br>
+                <input type="text" placeholder="Email Address.." email name="email" #email="ngModel" ngModel required>
+                <br>Password<br>
+                <input type="password" name="password" placeholder="Password.." #password="ngModel" ngModel required>
+                <button [disabled]="logInform.invalid"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerL"></mat-spinner><span [hidden]="showSpinnerL">Sign In</span></button>
+                <br>
+                <a routerLink="/forgotpassword">Forgot Password ?</a>
+                <p (click)="changeFormType()" class="formType">Sign-In as Admin</p>
+              </form>
+          </div>
+          <!--Admin Login-->
+          <div class="login" [hidden]="!(formvalue)">
+            <div class="notifyLog" *ngIf="loginResponse && loginResponse.msg == 'Invalid Credentials'"> <img src="../../../assets/Resources/Images/prohibition.png" alt="" srcset="" style="padding-right: 15px;">{{loginResponse.msg}} <br>Please check your credentials</div>
+            <form #logInAdminform="ngForm" (ngSubmit)="AdminLogIn(emailadmin.value,passwordadmin.value)">
+              Email<br>
+              <input type="text" placeholder="Email Address.." email name="email" #emailadmin="ngModel" ngModel required>
+              <br>Password<br>
+              <input type="password" name="password" placeholder="Password.." #passwordadmin="ngModel" ngModel required>
+              <button [disabled]="logInAdminform.invalid"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerL"></mat-spinner><span [hidden]="showSpinnerL">Sign In</span></button>
+              <br>
+              <p (click)="changeFormType()" class="formType">Sign-In as User</p>
+            </form>
+        </div>
+
+       </div>
+    </div>
+</div>

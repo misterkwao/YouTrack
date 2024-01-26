@@ -1,0 +1,78 @@
+<div class="main" *ngIf="userProfileData && userData">
+    <div class="viewAllContainer" *ngIf="showFormValue">
+        <div class="formCard">
+            <span class="closeViewAllCardBtn" (click)="closeForm()">
+                <img src="../../../assets/Resources/Images/exit.png" alt="" srcset="" width="20px">
+            </span>
+            <section>
+                <!--Notify-->
+            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg === 'Record update successfull'">Success</div>
+            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg != 'Record update successfull'">Failed</div>
+                <h3>Edit Record</h3>
+                <form #recordform="ngForm" (ngSubmit)="update(descrip.value,cat.value,file,pv.value,amount.value,false)">
+                 <label>Select Record</label>
+                 <div class="recordType">
+                    <label>Income</label><br>
+                    <input type="radio" id="income" name="record"  value="income" (change)="onItemChange($event.target)">
+                    <label >Expense</label><br>
+                    <input type="radio" id="expense" name="record" value="expense" (change)="onItemChange($event.target)">
+                 </div>
+                 <label>Amount</label>
+                 <input type="number" name="amount" id="amount" #amount="ngModel" required ngModel [(ngModel)]="Amount">
+                 <label>Payment voucher</label>
+                 <input type="text" name="pv" id="pv" #pv="ngModel" ngModel required [(ngModel)]="Pv">
+                 <label>Attachment (Optional)</label>
+                 <input type="file" name="attachment" id="attachment" #file><br>
+                 <label>Select category</label> 
+                 <select name="categories" id="categories" #cat="ngModel" ngModel required [(ngModel)]="Category">
+                    <option value={{item}}  *ngFor="let item of userProfileData?.userCategory" >{{item}}</option>
+                 </select>
+                 <label>Description</label>
+                 <textarea name="descrip" id="" cols="30" rows="10" [required]="true"  #descrip="ngModel" ngModel required  placeholder="Something brief...." [(ngModel)]="Description"></textarea>
+                 <button><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner><span [hidden]="showSpinner">Done</span></button>
+                  </form>
+                </section>
+        </div>
+    </div>
+
+    <div class="heading">
+        <div class="title"><span>Transactions</span></div>
+        <div class="search"><input type="search" name="search" id="search" placeholder="Search category, description or pv.." [(ngModel)]="searchValue"></div>
+         <div class="filter" title="Filter by week or year" (click)="filterBy()">This {{userProfileData.filterBy}}</div>
+         <div class="recordFilter" title="Filter by Income or Expense" >
+            <select name="filterRecord" id="filterRecord" [(ngModel)]="recordValue">
+                <option value="All">All</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+        </div>
+        <div class="balances"><span class="cr">• Balance {{userProfileData.currencyType}}: <span *ngIf="userData[0].Totals[0]">{{userData[0].Totals[0].currentAmount}}</span></span><span class="totalInc">• Total Inc {{userProfileData.currencyType}}:<span *ngIf="userData[0].Totals[0]">{{userData[0].Totals[0].totalIncome}}</span></span><span class="totalExp">• Total Exp {{userProfileData.currencyType}}: <span *ngIf="userData[0].Totals[0]">{{userData[0].Totals[0].totalExpense}}</span></span></div>
+    </div>
+    <!--Table-->
+    <div class="table-container">
+        <div class="table">
+            <div class="table-headings">
+                <span class="cat-H">Category</span>
+                <span class="time-H">Date/Time</span>
+                <span class="desc-H">Description</span>
+                <span class="amount-H">Amount</span>
+                <span class="pv-H">Payment Voucher</span>
+                <span class="editedBy-H">Last Edited By</span>
+                <span class="action-H">Actions</span>
+            </div>
+            <div class="scrollView">
+                <ul>
+                    <li *ngFor="let data of userData | filter: recordValue : searchValue;  let i = index; " id="{{data._id}}" #listData>
+                <span class="cat">{{data.category}}</span>
+                <span class="time">{{data.createdAt | date: 'medium'}}</span>
+                <span class="desc">{{data.description}}</span>
+                <span class="amount"><span class="amt inc" [ngClass]="{ exp: data.recordType === 'expense' }">{{userProfileData.currencyType}} {{data.amount}}</span></span>
+                <span class="pv">{{data.pv}}</span>
+                <span class="editedBy">{{data.lastEditedBy}}</span>
+                <span class="action"><a class="icon" href="{{data.attachmentUrl}}"  [hidden]="!data.attachmentUrl" ><mat-icon class="icon attch">attachment</mat-icon></a><mat-icon class="icon edit" (click)="showForm(listData.id)">edit</mat-icon><mat-icon class="icon del" (click)="deleteRecord(listData.id)">delete</mat-icon></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

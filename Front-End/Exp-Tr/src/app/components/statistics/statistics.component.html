@@ -1,0 +1,103 @@
+<div class="main" *ngIf="userData && userProfileData">
+    <div class="balances">
+        <div class="currentBalance">
+            <h2>Current Balance</h2>
+            <section><span class="currency">{{userProfileData.currencyType}} <span class="CB" *ngIf="userData[0].Totals[0]">{{userData[0].Totals[0].currentAmount}}</span></span> <img src="../../../assets/Resources/Images/coins.png" alt=""width="40px"></section>
+        </div>
+        <div class="totalIncome">
+            <h2>Total Income</h2>
+            <section><span class="currency">{{userProfileData.currencyType}} <span class="TI" *ngIf="userData[0].Totals[0]">{{userData[0].Totals[0].totalIncome}}</span></span> <img src="../../../assets/Resources/Images/chart-histogram.png" alt="" width="40px"></section>
+        </div>
+        <div class="totalExpense">
+            <h2>Total Expense</h2>
+            <section><span class="currency">{{userProfileData.currencyType}} <span class="CB" *ngIf="userData[0].Totals[0]">{{userData[0].Totals[0].totalExpense}}</span></span> <img src="../../../assets/Resources/Images/chat-arrow-down.png" alt=""width="40px"></section>
+        </div>
+    </div>
+
+    <!--Statistics-->
+    <div class="other-data" >
+       <div class="lineChart" [chart]="weekChart" *ngIf="userData&& userProfileData.filterBy === 'week'"></div>
+       <div class="lineChart" [chart]="yearChart" *ngIf="userData&&userProfileData.filterBy === 'year'"></div>
+       <div class="pieChart" [chart]="pieChart"></div>
+    </div>
+   
+ <!--Last row-->
+    <div class="other-data">
+        <div class="transactions">
+            <section class="heading"><span class="transheading">Recent Transactions</span> <span class="viewAll" (click)="enableViewAll()">• View All</span></section>
+            <div class="transList">
+                <ul *ngIf="userData[0].Totals[0]">
+                    <li *ngFor="let data of userData[0].Totals[0].transactions;  let i = index; ">
+                        
+                    <span class="left">
+                            <span class="category" title="Category">{{userData[0].Totals[0].transactions[i].category}}</span>
+                    </span>
+
+                    <span class="center">
+                        <span class="time">{{userData[0].Totals[0].transactions[i].createdAt | date:'medium'}}</span>
+                        <span class="description">{{userData[0].Totals[0].transactions[i].description}}</span>
+                    </span>
+
+                    <span class="right"><span class="amount inc"  [ngClass]="{ exp: userData[0].Totals[0].transactions[i].recordType === 'expense' }">{{userProfileData.currencyType}} {{userData[0].Totals[0].transactions[i].amount}}</span>
+                    <span class="pv">{{userData[0].Totals[0].transactions[i].pv}}</span>
+                  </span>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <div class="forex">
+            <section class="forexHeading">
+                <h3>Forex</h3>
+                <span>1 EUR</span>
+            </section>
+            <section class="forexValues" *ngIf="forexData">
+                <ul >
+                    <li *ngFor="let data of forexData.rates | keyvalue"><span class="fxCur">{{data.key}}</span> <span class="exchValue">{{data.value}}</span></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+     
+    <!--re-using the same attributes for viewAllContainer for AddCard-->
+    <div class="viewAllContainer" *ngIf="showAddCardValue">
+        <div class="formCard">
+            <span class="closeViewAllCardBtn" (click)="closeAddCard()">
+                <img src="../../../assets/Resources/Images/exit.png" alt="" srcset="" width="20px">
+            </span>
+            <section>
+                <!--Notify-->
+            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg === 'Record added successfully'">Success</div>
+            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg != 'Record added successfully'">Failed</div>
+                <h3>Income • Expenses</h3>
+                <form #recordform="ngForm" (ngSubmit)="add(descrip.value,cat.value,file,pv.value,amount.value,true)">
+                 <label>Select Record</label>
+                 <div class="recordType">
+                     <input type="radio" id="income" name="record"  value="income" (change)="onItemChange($event.target)">
+                    <label>Income</label><br>
+                    <input type="radio" id="expense" name="record" value="expense" (change)="onItemChange($event.target)">
+                    <label >Expense</label><br>
+                 </div>
+                 <label>Amount</label>
+                 <input type="number" name="amount" id="amount" #amount="ngModel" required ngModel>
+                 <label>Payment voucher</label>
+                 <input type="text" name="pv" id="pv" #pv="ngModel" ngModel required>
+                 <label>Attachment (Optional)</label>
+                 <input type="file" name="attachment" id="attachment" #file><br>
+                 <label>Select category</label>
+                 <select name="categories" id="categories" #cat="ngModel" ngModel required>
+                    <option value={{item}}  *ngFor="let item of userProfileData?.userCategory" >{{item}}</option>
+                 </select>
+                 <label>Description</label>
+                 <textarea name="descrip" id="" cols="30" rows="10" [required]="true"  #descrip="ngModel" ngModel required placeholder="Something brief..."></textarea>
+                 <button [disabled]="recordform.invalid"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner><span [hidden]="showSpinner">Done</span></button>
+                  </form>
+                </section>
+        </div>
+    </div>
+
+    <div class="addBtn" (click)="showaddCard()">
+    <img src="../../../assets/Resources/Images/plus.png" alt="" width="30px">
+    </div>
+
+</div>

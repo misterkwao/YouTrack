@@ -1,0 +1,124 @@
+<div class="main" *ngIf="data && data?.users && allUserTransactions">
+    
+    <div class="viewAllContainer" *ngIf="showFormValue">
+        <div class="formCard">
+            <span class="closeViewAllCardBtn" (click)="closeForm()">
+                <img src="../../../assets/Resources/Images/exit.png" alt="" srcset="" width="20px">
+            </span>
+            <section>
+                <!--Notify-->
+            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg === 'Record update successfull'">Success</div>
+            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg != 'Record update successfull'">Failed</div>
+                <h3>Edit Record</h3>
+                <form #recordform="ngForm" (ngSubmit)="update(descrip.value,cat.value,file,pv.value,amount.value)">
+                 <label>Select Record</label>
+                 <div class="recordType">
+                    <label>Income</label><br>
+                    <input type="radio" id="income" name="record"  value="income" (change)="onItemChange($event.target)">
+                    <label >Expense</label><br>
+                    <input type="radio" id="expense" name="record" value="expense" (change)="onItemChange($event.target)">
+                 </div>
+                 <label>Amount</label>
+                 <input type="number" name="amount" id="amount" #amount="ngModel" required ngModel [(ngModel)]="Amount">
+                 <label>Payment voucher</label>
+                 <input type="text" name="pv" id="pv" #pv="ngModel" ngModel required [(ngModel)]="Pv">
+                 <label>Attachment (Optional)</label>
+                 <input type="file" name="attachment" id="attachment" #file><br>
+                 <label>Select category</label> 
+                 <select name="categories" id="categories" #cat="ngModel" ngModel required [(ngModel)]="Category">
+                    <option value={{item}}  *ngFor="let item of userProfileData?.userCategory" >{{item}}</option>
+                 </select>
+                 <label>Description</label>
+                 <textarea name="descrip" id="" cols="30" rows="10" [required]="true"  #descrip="ngModel" ngModel required  placeholder="Something brief...." [(ngModel)]="Description"></textarea>
+                 <button><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner><span [hidden]="showSpinner">Done</span></button>
+                  </form>
+                </section>
+        </div>
+    </div>
+
+    <div class="sections">
+        <div class="left">
+            <div class="top">
+                <div class="heading">
+                    <h1>Users</h1>
+                    <input type="search" name="search" id="search" placeholder="Search user.." [(ngModel)]="searchValue">
+                </div>
+                <ul>
+                    <li *ngFor=" let user of data.users | usersfilter : searchValue">
+                        <div class="user-bio">
+                            <div class="profile-picture"><img crossorigin='anonymous' [src]= user.profilePictureURL  alt="" srcset=""></div>
+                            <p>{{user.name}}</p>
+                        </div>
+                        <div class="user-bio-data">
+                            <span>Curr Bal: {{user.currentAmount}}</span>
+                            <span>Total Inc: {{user.totalIncome}}</span>
+                            <span>Total Exp: {{user.totalExpense}}</span>
+                            <span class="currency">{{user.currencyType}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom">
+                <div class="container">
+                    <div class="heading">
+                        <p>All Transactions</p>
+                        <div class="tools">
+                            <div class="search" title="Search by created by, category, description or pv"><input type="search" name="search" id="search" placeholder="Search creator, catego.." [(ngModel)]="searchTransListValue"></div>
+                            <div class="filter" title="Filter by week or year">
+                                <select name="sortDateValue" id="sortDateValue" [(ngModel)]="sortDateValue">
+                                    <option value="year">This Year</option>
+                                    <option value="month">This Month</option>
+                                    <option value="today">Today</option>
+                                </select>
+                            </div>
+                            <div class="recordFilter" title="Filter by Income or Expense" >
+                               <select name="filterRecord" id="filterRecord" [(ngModel)]="recordValue">
+                                   <option value="All">All</option>
+                                   <option value="income">Income</option>
+                                   <option value="expense">Expense</option>
+                               </select>
+                           </div>
+                        </div>
+                    </div>
+
+                    <div class="table">
+                        <div class="table-headings">
+                            <span class="createdBy-H">Created By</span>
+                            <span class="cat-H">Category</span>
+                            <span class="time-H">Date/Time</span>
+                            <span class="desc-H">Description</span>
+                            <span class="amount-H">Amount</span>
+                            <span class="pv-H">Payment Voucher</span>
+                            <span class="editedBy-H">Last Edited By</span>
+                            <span class="action-H">Actions</span>
+                        </div>
+                        <div class="scrollView">
+                            <ul>
+                                <li *ngFor="let transaction of allUserTransactions.transactions | translistfilter: recordValue: searchTransListValue: sortDateValue" id="{{transaction._id}}" #listData>
+                            <span class="createdBy">{{transaction.creatorName}}</span>
+                            <span class="cat">{{transaction.category}}</span>
+                            <span class="time">{{transaction.createdAt | date: 'mediumDate'}}</span>
+                            <span class="desc">{{transaction.description}}</span>
+                            <span class="amount"><span class="amt inc" [ngClass]="{ exp: transaction.recordType === 'expense' }">{{data.users[0].currencyType}} {{transaction.amount}}</span></span>
+                            <span class="pv">{{transaction.pv}}</span>
+                            <span class="editedBy">{{transaction.lastEditedBy}}</span>
+                            <span class="action"><a class="icon" href="{{transaction.attachmentUrl}}"  [hidden]="!transaction.attachmentUrl" ><mat-icon class="icon attch">attachment</mat-icon></a><mat-icon class="icon edit" (click)="showForm(listData.id)" *ngIf="canEdit">edit</mat-icon><mat-icon class="icon del" (click)="deleteRecord(listData.id)" *ngIf="canEdit">delete</mat-icon></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div [chart]="pieChart"></div>
+            <div class="top-categories">
+                <h2>Top Categories</h2>
+                <ul>
+                    <li *ngFor=" let category of topCategories"><span>{{category._id.category}}</span><span>{{category.totalAmt}} {{currency}}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

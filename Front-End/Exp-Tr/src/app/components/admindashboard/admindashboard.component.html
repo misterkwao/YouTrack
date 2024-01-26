@@ -1,0 +1,28 @@
+<div class="main">
+    <div class="side-panel" [ngClass]="{'show':showMenuValue}">
+        <h1><span class="you">You</span><span class="track">Track</span></h1>
+        <div class="profile-picture"><img crossorigin='anonymous' [src]= userProfileData?.profilePictureURL  alt="" srcset=""></div>
+        <p class="username">{{ userProfileData?.admin}}</p>
+        <div class="menu">
+            <ul>
+                <li (click)="displayStats()" [ngClass]="{'highlightD': highlightStatsBtn}"><img src="../../../assets/Resources/Images/users-alt.png" width="20px"> <span>Users</span></li>
+                <!-- <li (click)="displaySets()" [ngClass]="{'highlightS': highlightSettingsBtn}"><img src="../../../assets/Resources/Images/settings-sliders.png" width="20px"> <span>Settings</span></li> -->
+            </ul>
+        </div>
+        <!--Router link-->
+        <span class="logout" (click)="logOut()">Log Out</span>
+    </div>
+    <div class="dynamic-panel">
+        
+        <span class="menu-btn"  *ngIf="!showMenuValue"><img src="../../../assets/Resources/Images/menu.png" alt="" srcset="" width="34px" (click)="showMenu()"> <!--This is for mobile--> </span>
+        <!-- <section class="dynamic-panel-bg" *ngIf="!(highlightStatsBtn || highlightSettingsBtn)" (click)="removeMenu()">
+            This handles the backgroud image 
+            remove cause it doesnt serve purposes beautification cast
+            <p *ngIf="!(highlightStatsBtn || highlightSettingsBtn)">Manange all your expenses<br>with simple clicks</p>
+        </section> -->
+        
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+

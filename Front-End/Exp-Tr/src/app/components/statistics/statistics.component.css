@@ -1,0 +1,533 @@
+.main{
+    min-height: 830px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(250, 249, 246);
+}
+.balances{
+    min-height: 150px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.balances > div{
+    min-width: 350px;
+    min-height: 130px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 0.8em;
+    box-shadow: 3px 5px 5px rgba(126, 175, 171, 0.537);
+}
+.balances section{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+.balances h2{
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.753);
+    font-weight: 500;
+}
+.balances h3{
+    padding-left: 15px;
+}
+.all{
+    padding: 10px;
+}
+.currentBalance{
+  background-color: rgba(208, 244, 205, 0.452)
+}
+.totalIncome{
+    background-color: rgba(255, 0, 255, 0.189);
+}
+.totalExpense{
+   background-color: rgba(255, 0, 0, 0.173);
+}
+
+.other-data{
+    width: 100%;
+    min-height: 320px;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+ flex-wrap: wrap;
+}
+.other-data> div{
+    border-radius: 1em;
+}
+.chart-data> div{
+    border-radius: 1em;
+}
+.hr{
+    background-color: rgba(196, 253, 139, 0.442);
+    width:95%;
+    margin: auto; 
+    padding: 1px;
+    border: none;
+    border-radius: 1em;
+}
+
+.transactions, .lineChart{
+    width: 65%;
+    min-height: 280px;
+    background-color: white;
+    box-shadow: 5px 10px 10px whitesmoke;
+}
+.transactions .heading{
+    margin: 3px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    
+}
+.transheading{
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 20px;
+}
+.viewAll{
+    cursor: pointer;
+    color: rgb(69, 254, 69);
+}
+.transList{
+    width: 100%;
+    height: 230px;
+   border-radius: 1em;
+   overflow-y: scroll;
+}
+.transList::-webkit-scrollbar{
+   display: none;
+}
+
+/*.transList::-webkit-scrollbar-track{
+   border-radius: 1em;
+   background-color: rgb(100, 93, 93);
+   height: 10px;
+ }
+ .transList::-webkit-scrollbar-thumb{
+    border-radius: 1em;
+    background-color: rgb(210, 255, 192);
+  }
+.transList::-webkit-scrollbar-corner{
+    padding: 10px;
+}*/
+.transList ul li{
+    list-style: none;
+    margin: 12px;
+    padding: 3px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(196, 253, 139, 0.442);   
+}
+/* .transList ul li > span{
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+} */
+
+.amount{
+    width: 78px;
+    border-radius: 1em;
+    text-align: center;  
+}
+.amount.inc{
+    background-color: rgba(168, 255, 160, 0.523);
+    border: 1px solid rgb(229, 229, 229);
+}
+.amount.exp{
+    background-color: rgba(255, 182, 160, 0.523);
+    border: 1px solid rgb(229, 229, 229);
+}
+
+
+.forex, .pieChart{
+    width: 30%;
+    min-height: 280px;
+    background-color: white;
+    box-shadow: 5px 10px 10px whitesmoke;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.forex{
+    width: 30%;
+    min-height: 280px;
+    background-color: white;
+    box-shadow: 5px 10px 10px whitesmoke;
+    display: block;
+    padding: 5px;
+}
+
+.forexHeading{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+.forexHeading span{
+    text-align: center;
+    padding: 8px;
+    width: 80px;
+    background-color: rgba(168, 255, 160, 0.679);
+    border-radius: 1em;
+}
+.forexValues{
+    padding: 5px;
+    width: 100%;
+    height: 230px;
+    overflow-y: scroll;
+}
+.forexValues ul li {
+    background-color: rgba(188, 202, 201, 0.067);
+    border-radius: 0.5em;
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.exchValue{
+    color: rgba(21, 255, 0, 0.679);
+}
+.forexValues::-webkit-scrollbar{
+    display: none;
+}
+.viewAllContainer{
+    margin-top: 0px;
+    position: fixed;
+    width: 80%;
+    min-height: 800px;
+    background-color: rgba(240, 240, 240, 0.574);
+    backdrop-filter: blur(10px);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addBtn{
+    position: fixed;
+    left: 95%;
+    top: 90%;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(77, 255, 0, 0.684);
+    cursor: pointer;
+}
+.addBtn img{
+    width: 100%;
+    height: 100%;
+}
+
+.formCard{
+    padding: 5px;
+    background-color: white;
+    width: 40%;
+    height: 620px;
+    border-radius: 5px;
+}
+label{
+    margin-top: 5px;
+}
+.formCard h3{
+    text-align: center;
+}
+
+.formCard section{
+    min-height: 570px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.formCard section h3{
+    padding-top: 10px;
+    text-align: center;
+    position: relative;
+    left: 20%;
+    height: 40px;
+    width: 60%;
+    background-color: rgba(208, 244, 205, 0.452);
+}
+.formCard form{
+    padding-left: 20px;
+    width: 100%;
+    height: 460px;
+}
+.recordType{
+    display: flex;
+    height: 30px;
+    justify-content: space-around;
+}
+.recordType label{
+    position: relative;
+     left: 5px;
+}
+
+.formCard input[type="number"]{
+   width: 95%;
+   padding: 8px;
+   border: 2px solid rgba(168, 255, 160, 0.921);
+   border-radius: 5px;
+   outline: none;
+   margin-top: 5px;
+    margin-bottom: 5px;
+}
+.formCard input[type="text"]{
+    width: 95%;
+    padding: 8px;
+    border: 2px solid rgba(168, 255, 160, 0.921);
+    border-radius: 5px;
+    outline: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+ }
+ .formCard input[type="file"]{
+    padding-top: 5px;
+    padding-bottom: 5px;
+ }
+.formCard button{
+    margin-top: 10px;
+    padding: 5px;
+    width: 95%;
+    height: 8%;
+    background-color: rgba(168, 255, 160, 0.921);
+    outline: none;
+    border: none;
+    transition: all 1s;
+}
+.formCard input[type="submit"]:hover{
+    background-color: rgba(53, 255, 35, 0.921);
+   cursor: pointer;
+}
+.formCard p{
+    padding: 5px 0px 5px 0px;
+}
+.formCard textarea{
+    padding: 5px;
+    width: 95%;
+    height: 25%;
+    resize: none;
+    border: 2px solid rgba(168, 255, 160, 0.921);
+   border-radius: 5px;
+   outline: none;
+}
+
+.recordOptions{
+    display: flex;
+    width: 40%;
+    height: 10%;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.recordOptions li{
+    list-style: none;
+    border-radius: 1em;
+    height: 35px;
+    width: 100px;
+    text-align: center;
+    padding-top: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.formCard select{
+    padding: 5px;
+    width: 95%;
+    height: 10%;
+    resize: none;
+    border: 2px solid rgba(168, 255, 160, 0.921);
+   border-radius: 5px;
+   outline: none;
+   margin-top: 5px;
+   margin-bottom: 5px;
+}
+
+.notifySign{
+    position: absolute;
+    z-index: 2;
+    height: 100px;
+    width: 200px;
+    top: 37%;
+    left: 42%;
+    border-radius: 1em;
+    display: flex;
+    background-color: aliceblue;
+    justify-content: center;
+    align-items: center;
+}
+.mat-mdc-progress-spinner {
+    --mdc-circular-progress-active-indicator-color:rgb(45, 103, 6);
+}
+.notifySign.remove{
+    display: none;
+}
+
+.closeViewAllCardBtn{
+    display: flex;
+    float: right;
+}
+
+.left{
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+}
+.center{
+    width: 350px;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+.center > span{
+    height: 60px;
+    width: 160px;
+}
+.time{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: small;
+}
+.description{
+    font-size: small;
+    display: -webkit-box; 
+            -webkit-box-orient: vertical; 
+            -webkit-line-clamp: 3; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+}
+.right{
+    width: 150px;
+    flex-direction: column;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+}
+.right >span{
+    width: 100px;
+    text-align: center;
+}
+
+.pv{
+    margin-top: 5px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 914px) {
+    .main{
+        padding-top: 60px;
+    }
+    .balances,.line-graph{
+        min-height: 55vh;
+    }
+   .other-data{ 
+    min-height: 650px;
+   }
+   .other-data > div{
+    width: 90%;
+   }
+   .addBtn{
+   left: 85%;
+   }
+
+   .viewAllContainer{
+    width: 100%;
+    min-height: 880px;
+    display: block;
+   }
+   .viewAllCard{
+    width: 90%;
+    margin-top: 50px;
+    margin-left: 20px;
+   }
+   .formCard{
+    width: 90%;
+    margin-top: 50px;
+    margin-left: 20px;
+   }
+   .formCard textarea{
+    width: 80%;
+}
+ 
+.formCard textarea{
+    padding: 5px;
+    width: 95%;
+}
+
+.center{
+    width: 200px;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    flex-direction: column;
+}
+.time{
+    font-size: x-small;
+}
+.description{
+    text-align: center;
+    font-size: small;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.right >span{
+    font-size: x-small;
+    width: 70px;
+    text-align: center;
+}
+
+.notifySign{
+    left: 30%; 
+}
+  
+  }
+
+  @media screen and (max-width: 420px) {
+    .balances{
+        min-height: 500px;
+        width: 100%;
+       
+    }
+    .balances > div{
+        min-width: 350px;
+        min-height: 130px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .balances{
+        min-height: 500px;
+        width: 100%;
+       
+    }
+    .balances > div{
+        min-width: 300px;
+        min-height: 130px;
+    }
+}
