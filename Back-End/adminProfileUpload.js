@@ -4,7 +4,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req,file,callback) {
-      const folderName = `/adminprofilepictures/${req.admin.adminID}`;
+      const folderName = `/opt/render/project/src/Back-End/adminprofilepictures/${req.admin.adminID}`;
 
       //checking if adminfolder already exists
       try {
