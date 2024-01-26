@@ -5,7 +5,7 @@ const ProfileSchema = new mongoose.Schema({
       },
       profilePictureURL: {
          type: String,
-         default: "http://localhost:5000/api/v1/userprofilepictures/default.png"
+         default: "https://youtrack-hfl0.onrender.com/api/v1/userprofilepictures/default.png"
       },
       userCategory: {
           type: [],
