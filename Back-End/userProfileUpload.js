@@ -4,7 +4,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req,file,callback) {
-      const folderName = `./userprofilepictures/${req.user.userID}`;
+      const folderName = `/userprofilepictures/${req.user.userID}`;
 
       //checking if userfolder already exists
       try {

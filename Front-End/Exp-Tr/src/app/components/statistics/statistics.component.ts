@@ -66,7 +66,7 @@ constructor(private forexDataService: ForexService,private YoutrackService: Yout
   
 add(descrip: string,cat:any,attachment:any,pv:string,amount: any,addorupdate:boolean): void {
   this.showSpinner = true;
-  //The empty string doesn't servea purpose for making a post request it's just a placeholder
+  //The empty string doesn't serve a purpose for making a post request it's just a placeholder for editing a record in all transactions
     this.YoutrackService.addorupdate(descrip,cat,attachment.files[0],pv,amount,this.recordtype,addorupdate,"")
     .subscribe({
       next: (response)=>{
