@@ -9,9 +9,8 @@ const storage = multer.diskStorage({
       try {
         //fs.accessSync('/userAttachments', fs.constants.R_OK | fs.constants.W_OK);
          if (fs.existsSync(__dirname)) {
-          console.log('fuck')
-          //  fs.mkdirSync(folderName);
-          //  console.log("folder created successfully")
+           fs.mkdirSync(folderName);
+           console.log("folder created successfully")
          }
        } catch (err) {
          console.error(err);
