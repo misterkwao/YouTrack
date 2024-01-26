@@ -12,7 +12,7 @@ let Auth = async (req, res, next) => {
     else{
         const token = authHeader.split(' ')[1];
         try {
-            const payload = jwt.verify(token, process.env.JWT_Secret)
+            const payload = jwt.verify(token, process.env.JWT_SECRET)
             if (payload.userID){
                 req.user = { userID: payload.userID, name: payload.name};
                 const user = await Users.findOne({owner:req.user.userID});
