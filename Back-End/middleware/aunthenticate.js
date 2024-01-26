@@ -24,7 +24,7 @@ let Auth = async (req, res, next) => {
             next();
         } catch (error) {
             //throw new UnauthenticatedError('Authentication Invalid');
-            res.status(StatusCodes.BAD_REQUEST).json({ msg: error.message})
+            res.status(StatusCodes.BAD_REQUEST).json({ msg: error})
         }
     }
 
