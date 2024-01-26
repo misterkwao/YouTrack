@@ -1,5 +1,5 @@
 .main{
-    min-height: 830px;
+    height: 780px;
     display: flex;
     flex-direction: column;
     background-color: rgb(250, 249, 246);
@@ -52,7 +52,7 @@
 
 .other-data{
     width: 100%;
-    min-height: 320px;
+    min-height: 310px;
    display: flex;
    justify-content: space-around;
    align-items: center;

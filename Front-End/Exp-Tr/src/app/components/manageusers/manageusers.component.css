@@ -5,7 +5,6 @@
 .sections{
     min-height: 800px;
     display: flex;
-    flex-wrap: wrap;
 }
 .left{
     width: 900px;
@@ -17,7 +16,6 @@
 }
 .left .top{
     min-height: 35%;
-    width: 900px;
 }
 .top .heading{
     height: 40px;
@@ -461,6 +459,11 @@ select{
     .main{
         padding-top: 60px;
         min-height: 920px;
+    }
+    .sections{
+        min-height: 800px;
+        display: flex;
+        flex-wrap: wrap;
     }
     .left .top{
         min-height: 35%;
