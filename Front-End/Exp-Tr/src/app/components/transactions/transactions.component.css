@@ -1,3 +1,11 @@
+#loader{
+    min-height: 780px;
+    width: 100%;
+    background:url(./../.././../assets/Resources/Images/Loading-bro.png) no-repeat center;
+    position: fixed;
+    background-size: 40%;
+    z-index: 100;
+}
 .main{
     min-height: 795px;
     background-color: rgba(225, 240, 224, 0.508);

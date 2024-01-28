@@ -44,8 +44,8 @@ canEdit?: boolean = false
     this.YoutrackService.getManageUsersStats()
     .subscribe({
       next: (response) =>{
+        this.getuserProfileData(); //get the current logged in user to check for permissions
         this.getAllUserTransactions()
-        this.getuserProfileData();
         this.data = response;
         this.currency = this.data.users[0].currencyType;
         //creating pie chart data

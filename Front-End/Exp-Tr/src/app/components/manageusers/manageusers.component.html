@@ -1,5 +1,5 @@
-<div class="main" *ngIf="data && data?.users && allUserTransactions">
-    
+<div id="loader" *ngIf="!(data && data?.users)"></div>
+<div class="main" *ngIf="data && data?.users">
     <div class="viewAllContainer" *ngIf="showFormValue">
         <div class="formCard">
             <span class="closeViewAllCardBtn" (click)="closeForm()">
@@ -92,7 +92,7 @@
                             <span class="editedBy-H">Last Edited By</span>
                             <span class="action-H">Actions</span>
                         </div>
-                        <div class="scrollView">
+                        <div class="scrollView" *ngIf="allUserTransactions">
                             <ul>
                                 <li *ngFor="let transaction of allUserTransactions.transactions | translistfilter: recordValue: searchTransListValue: sortDateValue" id="{{transaction._id}}" #listData>
                             <span class="createdBy">{{transaction.creatorName}}</span>

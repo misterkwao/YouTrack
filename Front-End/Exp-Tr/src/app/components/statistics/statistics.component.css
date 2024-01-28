@@ -1,8 +1,17 @@
+#loader{
+    min-height: 780px;
+    width: 100%;
+    background:url(./../.././../assets/Resources/Images/Loading-bro.png) no-repeat center;
+    position: fixed;
+    background-size: 40%;
+    z-index: 100;
+}
 .main{
     min-height: 780px;
     display: flex;
     flex-direction: column;
     background-color: rgb(250, 249, 246);
+    transition: all 1s ease;
 }
 .balances{
     min-height: 150px;
