@@ -511,4 +511,9 @@ select{
         height: 620px;
         border-radius: 5px;
     }
+    #loader{
+        height: 300px;
+        width: 100%;
+        background-size: 80%;
+    }
 }

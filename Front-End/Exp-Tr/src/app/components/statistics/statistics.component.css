@@ -514,6 +514,12 @@ label{
 .notifySign{
     left: 30%; 
 }
+
+#loader{
+    height: 300px;
+    width: 100%;
+    background-size: 80%;
+}
   
   }
 

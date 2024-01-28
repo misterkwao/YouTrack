@@ -493,5 +493,10 @@ select{
     justify-content: center;
     align-items: center;
 }
+#loader{
+    height: 300px;
+    width: 100%;
+    background-size: 80%;
+}
 
 }
