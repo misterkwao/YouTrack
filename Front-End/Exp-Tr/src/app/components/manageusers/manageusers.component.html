@@ -13,10 +13,10 @@
                 <form #recordform="ngForm" (ngSubmit)="update(descrip.value,cat.value,file,pv.value,amount.value)">
                  <label>Select Record</label>
                  <div class="recordType">
+                     <input type="radio" id="income" name="record"  value="income" (change)="onItemChange($event.target)">
                     <label>Income</label><br>
-                    <input type="radio" id="income" name="record"  value="income" (change)="onItemChange($event.target)">
-                    <label >Expense</label><br>
                     <input type="radio" id="expense" name="record" value="expense" (change)="onItemChange($event.target)">
+                    <label >Expense</label><br>
                  </div>
                  <label>Amount</label>
                  <input type="number" name="amount" id="amount" #amount="ngModel" required ngModel [(ngModel)]="Amount">
