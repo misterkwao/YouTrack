@@ -164,7 +164,7 @@ filterBy(){
    this.YoutrackService.deleteRecord(value)
    .subscribe({
     next: (response)=>{
-      this.response.msg = response;
+      this.response = response;
       console.log(this.response)
         setTimeout(()=>{
      if(this.response.msg){

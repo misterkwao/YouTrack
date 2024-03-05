@@ -59,6 +59,10 @@ canEdit?: boolean = false
           return value._id.year === new Date().getFullYear(); 
               });
           this.topCategories = this.topCategories.slice(0,3)
+      },
+      error: (response)=>{
+       this.response = response;
+       console.log(this.response.message);
       }
     })
     
@@ -156,6 +160,7 @@ onItemChange(target:any){
    },
     error: (response)=>{
      this.response = response;
+     console.log(response);
      setTimeout(()=>{
   if(this.response.msg){
     this.response =" ";
