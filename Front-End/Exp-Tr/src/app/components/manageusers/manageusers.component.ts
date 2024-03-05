@@ -23,7 +23,7 @@ allUserTransactions?: AllUserTransactions;
 recordID?: string="";
 showSpinner: boolean = false;
 removeNotify: boolean = false;
-recordResponse?: any;
+response?: any;
 Amount?: number;
 Pv?: string;
 Description?: string ;
@@ -93,22 +93,26 @@ canEdit?: boolean = false
       this.YoutrackService.updateUserRecord(descrip,cat,attachment.files[0],pv,amount,this.recordtype,this.recordID)
       .subscribe({
         next: (response)=>{
-         this.recordResponse = response;
-        }
+          this.response = response;
+          console.log(this.response)
+            setTimeout(()=>{
+         if(this.response.msg){
+           this.showSpinner = false;
+           this.response =" ";
+         }
+       }, 2000);
+     },
+      error: (response)=>{
+       this.response = response;
+       setTimeout(()=>{
+    if(this.response.msg){
+      this.showSpinner = false;
+      this.response =" ";
+    }
+  }, 2000);
+      }
       })
   
-      setTimeout(()=>{
-        if(this.recordResponse.msg === "Record added successfully"){
-          this.showSpinner = false;
-          this.removeNotify = true;
-        }
-        else{
-          this.showSpinner = false;
-          this.removeNotify = true;
-        }
-      }, 2000);
-      this.recordResponse ="";
-      this.removeNotify = false;
   }
 
 
@@ -141,10 +145,23 @@ onItemChange(target:any){
   deleteRecord(value:any){
     this.YoutrackService.deleteRecord(value)
     .subscribe({
-     next:(response)=>{
-       console.log(response);
-       this.getManageUsersData();
-     }
+      next: (response)=>{
+        this.response = response;
+          setTimeout(()=>{
+       if(this.response.msg){
+         this.getManageUsersData();
+         this.response =" ";
+       }
+     }, 2000);
+   },
+    error: (response)=>{
+     this.response = response;
+     setTimeout(()=>{
+  if(this.response.msg){
+    this.response =" ";
+  }
+}, 2000);
+    }
     })
   }
 

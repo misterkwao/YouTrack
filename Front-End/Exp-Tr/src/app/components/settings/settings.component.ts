@@ -44,7 +44,6 @@ export class SettingsComponent implements AfterViewInit {
           this.showSpinnerFw = false;
           this.showSpinnerFy = false;
           this.showSpinnerCr = false;
-
           this.removeNotify = true;
         }
         else{
@@ -57,8 +56,6 @@ export class SettingsComponent implements AfterViewInit {
           this.removeNotify = true;
         }
       }, 2000);
-      this.responseText ="";
-      this.removeNotify = false;
     }
 
     updateUser(updateType: string,updateValue: any){
@@ -67,62 +64,145 @@ export class SettingsComponent implements AfterViewInit {
               this.showSpinnerP = true;
               this.YoutrackService.updateUserProfile(updateType,updateValue.files[0])
               .subscribe({
-                next:(response)=>{
-                  this.responseText = response
-                  console.log(this.responseText);
+                next: (response)=>{
+                  this.responseText = response;
                   this.loaders();
-                }
+                    setTimeout(()=>{
+                 if(this.responseText.msg){
+                   this.responseText =" ";
+                 }
+               }, 2000);
+             },
+              error: (response)=>{
+               this.responseText = response;
+               this.loaders();
+               setTimeout(()=>{
+            if(this.responseText.msg){
+              this.responseText =" ";
+            }
+          }, 2000);
+              }
               });
               break;
         case 'username':
             this.showSpinnerU = true;
             this.YoutrackService.updateUserProfile(updateType,updateValue)
             .subscribe({
-              next:(response)=>{
-                console.log(response);
-                this.loaders()
-              }
+              next: (response)=>{
+                this.responseText = response;
+                this.loaders();
+                  setTimeout(()=>{
+               if(this.responseText.msg){
+                 this.responseText =" ";
+               }
+             }, 2000);
+           },
+            error: (response)=>{
+             this.responseText = response;
+             this.loaders();
+             setTimeout(()=>{
+          if(this.responseText.msg){
+            this.responseText =" ";
+          }
+        }, 2000);
+            }
             });
             break;
         case 'category':
             this.showSpinnerC =true
             this.YoutrackService.updateUserProfile(updateType,updateValue)
             .subscribe({
-              next:(response)=>{
-                console.log(response);
-                this.loaders()
+              next: (response)=>{
+                this.responseText = response;
+                this.loaders();
+                  setTimeout(()=>{
+               if(this.responseText.msg){
                 this.activateCatBtn = true;
-              }
+                 this.responseText =" ";
+               }
+             }, 2000);
+           },
+            error: (response)=>{
+             this.responseText = response;
+             this.loaders();
+             setTimeout(()=>{
+          if(this.responseText.msg){
+            this.responseText =" ";
+          }
+        }, 2000);
+            }
             });
             break;
         case 'filterW':
             this.showSpinnerFw = true
             this.YoutrackService.updateUserProfile(updateType,updateValue)
             .subscribe({
-              next:(response)=>{
-                console.log(response);
+              next: (response)=>{
+                this.responseText = response;
                 this.loaders();
-              }
+                  setTimeout(()=>{
+               if(this.responseText.msg){
+                 this.responseText =" ";
+               }
+             }, 2000);
+           },
+            error: (response)=>{
+             this.responseText = response;
+             this.loaders();
+             setTimeout(()=>{
+          if(this.responseText.msg){
+            this.responseText =" ";
+          }
+        }, 2000);
+            }
             });
             break;
         case 'filterY':
             this.showSpinnerFy = true;
             this.YoutrackService.updateUserProfile(updateType,updateValue)
             .subscribe({
-              next:(response)=>{
-                console.log(response);
+              next: (response)=>{
+                this.responseText = response;
                 this.loaders();
-              }
+                  setTimeout(()=>{
+               if(this.responseText.msg){
+                 this.responseText =" ";
+               }
+             }, 2000);
+           },
+            error: (response)=>{
+             this.responseText = response;
+             this.loaders();
+             setTimeout(()=>{
+          if(this.responseText.msg){
+            this.responseText =" ";
+          }
+        }, 2000);
+            }
             });
             break;
          default:
             this.showSpinnerCr = true;
             this.YoutrackService.updateUserProfile(updateType,updateValue)
             .subscribe({
-              next:(response)=>{
-                console.log(response);
+              next: (response)=>{
+                this.responseText = response;
+                  setTimeout(()=>{
+               if(this.responseText.msg){
                 this.loaders();
-              }
+                 this.responseText =" ";
+               }
+             }, 2000);
+           },
+            error: (response)=>{
+             this.responseText = response;
+             this.loaders();
+             setTimeout(()=>{
+          if(this.responseText.msg){
+            this.responseText =" ";
+          }
+        }, 2000);
+            }
             });
        }
     }

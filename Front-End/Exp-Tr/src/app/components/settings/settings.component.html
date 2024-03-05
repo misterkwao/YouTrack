@@ -1,5 +1,7 @@
 <div class="main">
-        <div class="notifySign" [ngClass]="{'remove':removeNotify}" >Success</div>
+    <div class="notification"*ngIf=" (responseText && responseText.msg)">
+        {{responseText.msg}}
+    </div>
         <div class="fstRow">
             <div class="profile">
                 <h1>Profile</h1>

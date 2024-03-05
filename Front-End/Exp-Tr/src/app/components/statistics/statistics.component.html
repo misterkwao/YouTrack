@@ -1,5 +1,8 @@
 <div id="loader" *ngIf="!(userData && userProfileData)"></div>
 <div class="main" *ngIf="userData && userProfileData">
+    <div class="notification"*ngIf=" (response && response.msg)">
+        {{response.msg}}
+    </div>
     <div class="balances">
         <div class="currentBalance">
             <h2>Current Balance</h2>
@@ -67,9 +70,6 @@
                 <img src="../../../assets/Resources/Images/exit.png" alt="" srcset="" width="20px">
             </span>
             <section>
-                <!--Notify-->
-            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg === 'Record added successfully'">Success</div>
-            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg != 'Record added successfully'">Failed</div>
                 <h3>Income • Expenses</h3>
                 <form #recordform="ngForm" (ngSubmit)="add(descrip.value,cat.value,file,pv.value,amount.value,true)">
                  <label>Select Record</label>

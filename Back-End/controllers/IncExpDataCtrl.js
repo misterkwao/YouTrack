@@ -160,10 +160,10 @@ const deleteUserRecord = async (req, res) => {
          
          const deleteRecord = await IncExpData.findByIdAndDelete(req.params.id)
          if(deleteRecord){
-            res.status(StatusCodes.OK).json("Record deleted successfully");
+            res.status(StatusCodes.OK).json({msg:"Record deleted successfully"});
          }
          else{
-            res.status(StatusCodes.BAD_REQUEST).json(`No record with id: ${req.params.id} found`);
+            res.status(StatusCodes.BAD_REQUEST).json({msg:`No record with id: ${req.params.id} found`});
          }
             
          } catch (error) {

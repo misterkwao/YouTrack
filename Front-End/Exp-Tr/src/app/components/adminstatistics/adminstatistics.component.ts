@@ -18,13 +18,12 @@ export class AdminstatisticsComponent implements AfterViewInit {
  removeNotify: boolean = false;
   showFormValue: boolean = false;
   showEditUserFormValue: boolean = false;
-  recordResponse?: any
+  response?: any
   usersArray?: any[]=[];
   showPromptValue: boolean = true;
   userID: string ="";
   username?: string;
   profileID: string="";
-  editResponse?: any;
 
   ngAfterViewInit(): void {
     this.getAllUsers();
@@ -46,22 +45,17 @@ export class AdminstatisticsComponent implements AfterViewInit {
     this.YouTrackService.signUp(username, email, password, level)
     .subscribe({
       next: (response)=>{
-        this.recordResponse = response;
+        this.response = response;
       }
     })
     setTimeout(()=>{
-      if(this.recordResponse.msg === "User created"){
+      if(this.response){
         this.showSpinner = false;
-        this.removeNotify = true;
+        this.response =" ";
+        this.getAllUsers();
       }
-      else{
-        this.showSpinner = false;
-        this.removeNotify = true;
-      }
-    }, 2000);
-    this.recordResponse ="";
-    this.removeNotify = false;
-    this.getAllUsers();
+    }, 3000);
+    
   }
 
   editUser(level:string): void{
@@ -69,22 +63,17 @@ export class AdminstatisticsComponent implements AfterViewInit {
     this.YouTrackService.editUserPermissions(this.profileID, level)
     .subscribe({
       next: (response)=>{
-          this.editResponse = response;
+          this.response = response;
       }
     })
     setTimeout(()=>{
-      if(this.editResponse.msg === "Edit successful"){
+      if(this.response){
         this.showSpinner = false;
-        this.removeNotify = true;
+        this.response =" ";
+        this.getAllUsers();
       }
-      else{
-        this.showSpinner = false;
-        this.removeNotify = true;
-      }
-    }, 2000);
-    this.editResponse ="";
-    this.removeNotify = false;
-    this.getAllUsers();
+    }, 3000);
+    
   }
 
   showeditUserForm(id:string): void{

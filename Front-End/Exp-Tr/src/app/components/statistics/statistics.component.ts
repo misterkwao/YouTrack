@@ -22,7 +22,7 @@ export class StatisticsComponent implements AfterViewInit{
  recordtype: string = 'income';
  showSpinner: boolean = false;
  removeNotify: boolean = false;
- recordResponse?: any;
+ response?: any;
  userData?: any;
  weekIncomeChartValue?: number[]=[];
  weekExpenseChartValue?: number[]=[];
@@ -45,7 +45,6 @@ constructor(private forexDataService: ForexService,private YoutrackService: Yout
     .subscribe({
       next: (response)=>{
         this.forexData = response;
-       console.log(this.forexData)
       }
     });
   }
@@ -70,23 +69,26 @@ add(descrip: string,cat:any,attachment:any,pv:string,amount: any,addorupdate:boo
     this.YoutrackService.addorupdate(descrip,cat,attachment.files[0],pv,amount,this.recordtype,addorupdate,"")
     .subscribe({
       next: (response)=>{
-       this.recordResponse = response;
-        console.log(response)
+       this.response = response;
+       setTimeout(()=>{
+        if(this.response.msg){
+          this.showSpinner = false;
+          this.response =" ";
+        }
+      }, 3000);
+      },
+      error: (response)=>{
+        this.response = response;
+       setTimeout(()=>{
+        if(this.response.msg){
+          this.showSpinner = false;
+          this.response =" ";
+        }
+      }, 3000);
       }
     })
 
-    setTimeout(()=>{
-      if(this.recordResponse.msg === "Record added successfully"){
-        this.showSpinner = false;
-        this.removeNotify = true;
-      }
-      else{
-        this.showSpinner = false;
-        this.removeNotify = true;
-      }
-    }, 2000);
-    this.recordResponse ="";
-    this.removeNotify = false;
+    
 }
 
 randomColor(){

@@ -445,6 +445,19 @@ label{
     overflow: hidden;
     white-space: nowrap;
 }
+.notification{
+    position: absolute;
+    top: 0% ;
+    width: 80%;
+    z-index: 3;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.4em;
+    background-color: rgb(213, 255, 202);
+    font-weight:800;
+}
 
 @media screen and (max-width: 914px) {
     .main{
@@ -519,6 +532,12 @@ label{
     height: 300px;
     width: 100%;
     background-size: 80%;
+}
+.notification{
+    position: absolute;
+    top: 7% ;
+    height: 60px;
+    width: 100%;
 }
   
   }

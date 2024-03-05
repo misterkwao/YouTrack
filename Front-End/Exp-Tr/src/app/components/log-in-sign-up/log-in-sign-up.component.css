@@ -30,7 +30,7 @@
 }
 .container{
     position: relative;
-    top: 25%;
+    top: 20%;
     width: 85%;
 }
 
@@ -116,9 +116,25 @@
     background-color: rgba(172, 241, 155, 0.693);
     cursor: pointer;
 }
+
 .formType{
     margin-top: 10px;
     cursor: pointer;
+    border: none;
+    outline: none;
+    width:80%;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 1em;
+    text-align: center;
+    background-color: rgba(172, 241, 155, 0.693);
+}
+.pwd{
+    display: flex;
+    justify-content: space-between; 
+    width: 80%;
+    margin-bottom: -15px; 
 }
  @media screen and (max-width: 914px) {
     
@@ -144,6 +160,9 @@
     .login button{
         width:105%;
     }
+    .formType{
+        width: 105%;
+    }
     .notifyLog{
         position: absolute;
         top: -22% ;
@@ -151,6 +170,12 @@
         width: 90%;
         background-color: rgba(235, 235, 235, 0.918);
         box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.473);
+    }
+    .pwd{
+        display: flex;
+        justify-content: space-between; 
+        width: 100%;
+        margin-bottom: -15px; 
     }
   } 
   @media screen and (max-width: 450px) {

@@ -12,12 +12,13 @@
               <form #logInform="ngForm" (ngSubmit)="logIn(email.value,password.value)">
                 Email<br>
                 <input type="text" placeholder="Email Address.." email name="email" #email="ngModel" ngModel required>
-                <br>Password<br>
+                <br><span class="pwd">Password <a routerLink="/forgotpassword">Forgot Password ?</a></span><br>
                 <input type="password" name="password" placeholder="Password.." #password="ngModel" ngModel required>
                 <button [disabled]="logInform.invalid"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerL"></mat-spinner><span [hidden]="showSpinnerL">Sign In</span></button>
                 <br>
-                <a routerLink="/forgotpassword">Forgot Password ?</a>
                 <p (click)="changeFormType()" class="formType">Sign-In as Admin</p>
+                <br>
+                
               </form>
           </div>
           <!--Admin Login-->
@@ -28,7 +29,7 @@
               <input type="text" placeholder="Email Address.." email name="email" #emailadmin="ngModel" ngModel required>
               <br>Password<br>
               <input type="password" name="password" placeholder="Password.." #passwordadmin="ngModel" ngModel required>
-              <button [disabled]="logInAdminform.invalid"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerL"></mat-spinner><span [hidden]="showSpinnerL">Sign In</span></button>
+              <button [disabled]="logInAdminform.invalid"><mat-spinner diameter="30" style="margin:0 auto;" *ngIf="showSpinnerS"></mat-spinner><span [hidden]="showSpinnerS">Sign In</span></button>
               <br>
               <p (click)="changeFormType()" class="formType">Sign-In as User</p>
             </form>

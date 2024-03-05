@@ -15,7 +15,7 @@ export class TransactionsComponent implements AfterViewInit{
   recordtype: string = '';
  showSpinner: boolean = false;
  removeNotify: boolean = false;
- recordResponse?: any;
+ response?: any;
  showFormValue?: boolean = false;
  recordID?: string="";
  Amount?: number;
@@ -92,23 +92,25 @@ searchValue?: any ;
       this.YoutrackService.addorupdate(descrip,cat,attachment.files[0],pv,amount,this.recordtype,AddOrUpdate,this.recordID)
       .subscribe({
         next: (response)=>{
-         this.recordResponse = response;
-          console.log(response)
-        }
-      })
-  
-      setTimeout(()=>{
-        if(this.recordResponse.msg === "Record added successfully"){
+         this.response = response;
+         console.log(this.response)
+           setTimeout(()=>{
+        if(this.response.msg){
           this.showSpinner = false;
-          this.removeNotify = true;
-        }
-        else{
-          this.showSpinner = false;
-          this.removeNotify = true;
+          this.response =" ";
         }
       }, 2000);
-      this.recordResponse ="";
-      this.removeNotify = false;
+    },
+     error: (response)=>{
+      this.response = response;
+      setTimeout(()=>{
+   if(this.response.msg){
+     this.showSpinner = false;
+     this.response =" ";
+   }
+ }, 2000);
+     }
+  })  
   }
 
 
@@ -161,10 +163,26 @@ filterBy(){
  deleteRecord(value:any){
    this.YoutrackService.deleteRecord(value)
    .subscribe({
-    next:(response)=>{
-      console.log(response);
-      this.getuserProfileData();
-    }
+    next: (response)=>{
+      this.response.msg = response;
+      console.log(this.response)
+        setTimeout(()=>{
+     if(this.response.msg){
+       this.showSpinner = false;
+       this.response =" ";
+       this.getuserProfileData();
+     }
+   }, 2000);
+ },
+  error: (response)=>{
+   this.response.msg = response;
+   setTimeout(()=>{
+if(this.response.msg){
+  this.showSpinner = false;
+  this.response =" ";
+}
+}, 2000);
+  }
    })
  }
 //

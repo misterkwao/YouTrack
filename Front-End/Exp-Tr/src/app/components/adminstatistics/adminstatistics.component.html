@@ -1,11 +1,10 @@
 <div id="loader" *ngIf="!(allUsersData)"></div>
 <div class="main" *ngIf="allUsersData">
+    <div class="notification"*ngIf=" (response && response.msg)">
+        {{response.msg}}
+    </div>
      <div class="blur_bg" *ngIf="showFormValue">
          <div class="create_user">
-
-            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg === 'User created'">Success</div>
-            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg != 'User created'">Failed</div>
-
             <p style="text-align: center; font-size: 20px; padding-top: 10px;">Create New User</p>
             <form #createuserform="ngForm" (ngSubmit)="createUser(username.value,email.value,pass2.value,level.value)">
                  <label for="name">Full Name</label><br>
@@ -47,15 +46,10 @@
      <!-- edit user form -->
      <div class="blur_bg" *ngIf="showEditUserFormValue">
         <div class="edit_user">
-
-           <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="editResponse && editResponse.msg === 'Edit successful'">Success</div>
-           <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="editResponse && editResponse.msg != 'Edit successful'">Failed</div>
-
            <p style="text-align: center; font-size: 20px; padding-top: 10px;">Edit User permissions</p>
            <form #createuserform="ngForm" (ngSubmit)="editUser(level.value)">
                 <label for="name">Name</label><br>
                 <input type="text" name="username" [readOnly]="true" [(ngModel)]="username"><br>
-   
                 <label for="Level"> User Level (with permissions)</label><br>
                 <select name="levels" id="levels" #level="ngModel" required ngModel>
                    <option value="Level 1">Level 1</option>

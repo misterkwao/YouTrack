@@ -1,14 +1,14 @@
 <div id="loader" *ngIf="!(data && data?.users)"></div>
 <div class="main" *ngIf="data && data?.users">
+    <div class="notification"*ngIf=" (response && response.msg)">
+        {{response.msg}}
+    </div>
     <div class="viewAllContainer" *ngIf="showFormValue">
         <div class="formCard">
             <span class="closeViewAllCardBtn" (click)="closeForm()">
                 <img src="../../../assets/Resources/Images/exit.png" alt="" srcset="" width="20px">
             </span>
             <section>
-                <!--Notify-->
-            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg === 'Record update successfull'">Success</div>
-            <div class="notifySign" [ngClass]="{'remove':removeNotify}" *ngIf="recordResponse && recordResponse.msg != 'Record update successfull'">Failed</div>
                 <h3>Edit Record</h3>
                 <form #recordform="ngForm" (ngSubmit)="update(descrip.value,cat.value,file,pv.value,amount.value)">
                  <label>Select Record</label>
@@ -35,7 +35,6 @@
                 </section>
         </div>
     </div>
-
     <div class="sections">
         <div class="left">
             <div class="top">

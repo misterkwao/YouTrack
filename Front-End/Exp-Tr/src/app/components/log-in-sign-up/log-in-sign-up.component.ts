@@ -45,13 +45,13 @@ export class LogInSignUpComponent{
   }
 
   AdminLogIn(email: string, password: string): void {
-    this.showSpinnerL = true
+    this.showSpinnerS = true
     this.YoutrackService.logInAdmin(email,password)
     .subscribe({
       next: (response)=>{
          this.loginResponse = response;
          if(this.loginResponse.msg === "Invalid Credentials"){
-           this.showSpinnerL = false;
+           this.showSpinnerS = false;
            setTimeout(()=>{
             this.loginResponse.msg = "valid";
           }, 1500);
