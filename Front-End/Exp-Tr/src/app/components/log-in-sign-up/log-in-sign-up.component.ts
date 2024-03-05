@@ -14,8 +14,7 @@ export class LogInSignUpComponent{
   showSpinnerL: boolean = false;
   showSpinnerS: boolean = false;
   removeNotify: boolean = false;
-  loginResponse?: any;
-  signupResponse?: any;
+  response?: any;
   formvalue: boolean = false;
   // showLogin: boolean = true;
   // showSignUp: boolean = false;
@@ -27,15 +26,15 @@ export class LogInSignUpComponent{
     this.YoutrackService.logIn(email,password)
     .subscribe({
       next: (response)=>{
-         this.loginResponse = response;
-         if(this.loginResponse.msg === "Invalid Credentials"){
+         this.response = response;
+         if(this.response.msg === "Invalid Credentials"){
            this.showSpinnerL = false;
            setTimeout(()=>{
-            this.loginResponse.msg = "valid";
+            this.response.msg = "";
           }, 1500);
         }
         else{
-           sessionStorage.setItem("token",this.loginResponse.token);
+           sessionStorage.setItem("token",this.response.token);
            setTimeout(()=>{
              this.router.navigateByUrl('/user/dashboard')
            }, 1200);
@@ -49,15 +48,15 @@ export class LogInSignUpComponent{
     this.YoutrackService.logInAdmin(email,password)
     .subscribe({
       next: (response)=>{
-         this.loginResponse = response;
-         if(this.loginResponse.msg === "Invalid Credentials"){
+         this.response = response;
+         if(this.response.msg === "Invalid Credentials"){
            this.showSpinnerS = false;
            setTimeout(()=>{
-            this.loginResponse.msg = "valid";
+            this.response.msg = "";
           }, 1500);
         }
         else{
-           sessionStorage.setItem("token",this.loginResponse.token);
+           sessionStorage.setItem("token",this.response.token);
            setTimeout(()=>{
              this.router.navigateByUrl('/admin/dashboard')
            }, 1200);

@@ -1,4 +1,7 @@
 <div class="main">
+  <div class="notification"*ngIf=" (response && response.msg)">
+    {{response.msg}}
+</div>
     <div class="side-panel">  
       <img src="../../../assets/Resources/Images/F2Illustration.jpg" alt="" srcset="" [hidden]="formvalue">
       <img src="../../../assets/Resources/Images/financeillustration.jpg" alt="" srcset="" [hidden]="!(formvalue)">
@@ -8,7 +11,6 @@
          <h1>Welcome To YouTrack,<br>Sign In To Continue</h1>
          <p>Your Expenses, in one place</p>
             <div class="login" [hidden]="formvalue">
-              <div class="notifyLog" *ngIf="loginResponse && loginResponse.msg == 'Invalid Credentials'"> <img src="../../../assets/Resources/Images/prohibition.png" alt="" srcset="" style="padding-right: 15px;">{{loginResponse.msg}} <br>Please check your credentials</div>
               <form #logInform="ngForm" (ngSubmit)="logIn(email.value,password.value)">
                 Email<br>
                 <input type="text" placeholder="Email Address.." email name="email" #email="ngModel" ngModel required>
@@ -23,7 +25,6 @@
           </div>
           <!--Admin Login-->
           <div class="login" [hidden]="!(formvalue)">
-            <div class="notifyLog" *ngIf="loginResponse && loginResponse.msg == 'Invalid Credentials'"> <img src="../../../assets/Resources/Images/prohibition.png" alt="" srcset="" style="padding-right: 15px;">{{loginResponse.msg}} <br>Please check your credentials</div>
             <form #logInAdminform="ngForm" (ngSubmit)="AdminLogIn(emailadmin.value,passwordadmin.value)">
               Email<br>
               <input type="text" placeholder="Email Address.." email name="email" #emailadmin="ngModel" ngModel required>
