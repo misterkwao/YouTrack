@@ -46,15 +46,25 @@ export class AdminstatisticsComponent implements AfterViewInit {
     .subscribe({
       next: (response)=>{
         this.response = response;
-      }
-    })
-    setTimeout(()=>{
+        setTimeout(()=>{
       if(this.response){
         this.showSpinner = false;
         this.response =" ";
         this.getAllUsers();
       }
     }, 3000);
+ },
+      error: (response)=>{
+        this.response = response;
+        setTimeout(()=>{
+      if(this.response.msg){
+      this.showSpinner = false;
+      this.response =" ";
+      }
+      }, 3000);
+      }
+    })
+    
     
   }
 
@@ -63,16 +73,25 @@ export class AdminstatisticsComponent implements AfterViewInit {
     this.YouTrackService.editUserPermissions(this.profileID, level)
     .subscribe({
       next: (response)=>{
-          this.response = response;
-      }
-    })
-    setTimeout(()=>{
+        this.response = response;
+        setTimeout(()=>{
       if(this.response){
         this.showSpinner = false;
         this.response =" ";
         this.getAllUsers();
       }
     }, 3000);
+ },
+      error: (response)=>{
+        this.response = response;
+        setTimeout(()=>{
+      if(this.response.msg){
+      this.showSpinner = false;
+      this.response =" ";
+      }
+      }, 3000);
+      }
+    })
     
   }
 
@@ -95,8 +114,24 @@ export class AdminstatisticsComponent implements AfterViewInit {
     this.YouTrackService.deleteUser(this.userID)
     .subscribe({
       next: (response)=>{
+        this.response = response;
         this.getAllUsers();
         this.showPromptValue = true
+        setTimeout(()=>{
+      if(this.response){
+        this.showSpinner = false;
+        this.response =" ";
+      }
+    }, 3000);
+ },
+      error: (response)=>{
+        this.response = response;
+        setTimeout(()=>{
+      if(this.response.msg){
+      this.showSpinner = false;
+      this.response =" ";
+      }
+      }, 3000);
       }
     })
   }
