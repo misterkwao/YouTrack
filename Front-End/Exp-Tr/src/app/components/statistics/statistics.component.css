@@ -7,7 +7,7 @@
     z-index: 100;
 }
 .main{
-    min-height: 780px;
+    min-height: 800px;
     display: flex;
     flex-direction: column;
     background-color: rgb(250, 249, 246);

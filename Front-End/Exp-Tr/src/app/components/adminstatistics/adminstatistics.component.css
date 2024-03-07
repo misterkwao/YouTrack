@@ -152,7 +152,7 @@ input[type="search"]{
 }
 .permissions span{
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.138);
+    background-color: rgba(0, 0, 0, 0.200);
     height: 25px;
     width: 60px;
     border-radius: 1em;
@@ -229,19 +229,20 @@ input{
    margin-bottom: 5px;
 }
 .permission_card{
-    padding: 5px;
-    width: 400px;
+    padding-left: 25px;
+    width: 100%;
     height: 80px;
 }
 .level_1, .level_2, .level_2e{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-.level_1 span{
+/* .level_1 span{
    background-color: rgb(219, 219, 219);
     border-radius: 2em;
-    margin-right: 2px;
+    margin: 5px;
     width: 80px;
     font-size: 10px;
     padding: 5px;
@@ -250,7 +251,7 @@ input{
 .level_2 span{
     background-color: rgb(219, 219, 219);
      border-radius: 2em;
-     margin-right: 2px;
+     margin: 5px;
      width: 100px;
      font-size: 10px;
      padding: 5px;
@@ -259,12 +260,12 @@ input{
 .level_2e span{
     background-color: rgb(219, 219, 219);
      border-radius: 2em;
-     margin-right: 2px;
+     margin: 5px;
      width: 100px;
      font-size: 10px;
      padding: 5px;
      text-align: center;
-}
+} */
 .buttons{
     display: flex;
     justify-content: space-evenly;
@@ -358,7 +359,7 @@ input{
         height: 100px;
         width: 55%;
     }
-    .permissions{
+    /* .permissions{
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -372,7 +373,7 @@ input{
            width: 25px;
            border-radius: 1em;
            padding: 2px;
-       }
+       } */
 
        .create_user{
         background-color: white;
@@ -411,4 +412,17 @@ input{
         width: 100%;
        
     }
+    .img{
+        display: none;
+    }
+    .scrollView ul li {
+        height: 120px;
+       padding-bottom: 25px;
+    }
+    .permissions span{
+    height: 20px;
+    margin: 2px;
+    padding: 1px;
+    font-size: 12px;
+}
 }

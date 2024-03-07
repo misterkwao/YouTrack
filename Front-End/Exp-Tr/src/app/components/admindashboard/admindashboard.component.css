@@ -14,6 +14,18 @@
     flex-direction: column;
     align-items: center;
 }
+.title{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.title .close-side-nav{
+    position: relative;
+    left: 20%;
+    top: -6%;
+    display: none;
+}
 .you{
     font-size: 40px;
     color: rgb(109, 214, 109);
@@ -133,6 +145,9 @@
         cursor: pointer;
         background-color: rgb(118, 248, 111);
         width: 100%;
+    }
+    .title .close-side-nav{
+        display: block;
     }
     .side-panel.show{
         display: inline-flex;

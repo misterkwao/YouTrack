@@ -37,6 +37,9 @@ showMenu(): void{
   if(!(this.showMenuValue)){
      this.showMenuValue = true;
   }
+  else{
+    this.showMenuValue = false;
+  }
 }
 removeMenu(): void{
   if(this.showMenuValue){

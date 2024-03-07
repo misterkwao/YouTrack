@@ -6,7 +6,7 @@
      <div class="blur_bg" *ngIf="showFormValue">
          <div class="create_user">
             <p style="text-align: center; font-size: 20px; padding-top: 10px;">Create New User</p>
-            <form #createuserform="ngForm" (ngSubmit)="createUser(username.value,email.value,pass2.value,level.value)">
+            <form #createuserform="ngForm" (ngSubmit)="createUser(username.value,email.value,pass2.value,level.value)" autocomplete="off">
                  <label for="name">Full Name</label><br>
                  <input type="text" name="username" #username="ngModel" required ngModel><br>
                  <label for="email">Email</label><br>
@@ -24,15 +24,21 @@
                  <label for="permissions">Permissions</label>
                  <div class="permission_card">
                     <div class="level_1" *ngIf="level.value === 'Level 1'">
-                        <span>create</span>
-                        <span>update</span>
-                        <span>delete</span>
+                        <ul>
+                        <li>create</li>
+                        <li>update</li>
+                        <li>delete</li>
+                        </ul>
+                        
                     </div>
                     <div class="level_2" *ngIf="level.value === 'Level 2'">
-                        <span>create</span>
-                        <span>update</span>
-                        <span>delete</span>
-                        <span>Edit User Record</span>
+                        <ul>
+                        <li>create</li>
+                        <li>update</li>
+                        <li>delete</li>
+                        <li>Edit User Record</li> 
+                        </ul>
+                        
                     </div>
                  </div>
                  <div class="buttons">
@@ -47,7 +53,7 @@
      <div class="blur_bg" *ngIf="showEditUserFormValue">
         <div class="edit_user">
            <p style="text-align: center; font-size: 20px; padding-top: 10px;">Edit User permissions</p>
-           <form #createuserform="ngForm" (ngSubmit)="editUser(level.value)">
+           <form #createuserform="ngForm" (ngSubmit)="editUser(level.value)" autocomplete="off">
                 <label for="name">Name</label><br>
                 <input type="text" name="username" [readOnly]="true" [(ngModel)]="username"><br>
                 <label for="Level"> User Level (with permissions)</label><br>
@@ -59,20 +65,29 @@
                 <label for="permissions">Permissions</label>
                 <div class="permission_card">
                    <div class="level_1" *ngIf="level.value === 'Level 1'">
-                       <span>create</span>
-                       <span>update</span>
-                       <span>delete</span>
+                    <ul>
+                        <li>create</li>
+                       <li>update</li>
+                       <li>delete</li>
+                    </ul>
+                      
                    </div>
                    <div class="level_2" *ngIf="level.value === 'Level 2'">
-                       <span>create</span>
-                       <span>update</span>
-                       <span>delete</span>
-                       <span>Edit User Record</span>
+                    <ul>
+                       <li>create</li>
+                       <li>update</li>
+                       <li>delete</li>
+                       <li>Edit User Record</li> 
+                    </ul>
+                       
                    </div>
                    <div class="level_2e" *ngIf="level.value === 'Level 2e'">
-                    <span>create</span>
-                    <span>update</span>
-                    <span>delete</span>
+                    <ul>
+                    <li>create</li>
+                    <li>update</li>
+                    <li>delete</li>
+                    </ul>
+                    
                 </div>
                 </div>
                 <div class="buttons">

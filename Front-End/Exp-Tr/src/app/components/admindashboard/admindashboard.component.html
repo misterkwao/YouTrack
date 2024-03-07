@@ -1,6 +1,6 @@
 <div class="main">
     <div class="side-panel" [ngClass]="{'show':showMenuValue}">
-        <h1><span class="you">You</span><span class="track">Track</span></h1>
+        <span class="title"><h1><span class="you">You</span><span class="track">Track</span></h1><span class="close-side-nav" ><img src="../../../assets/Resources/Images/angle-double-small-left.png" width="28px" (click)="removeMenu()"></span></span>
         <div class="profile-picture"><img crossorigin='anonymous' [src]= userProfileData?.profilePictureURL  alt="" srcset=""></div>
         <p class="username">{{ userProfileData?.admin}}</p>
         <div class="menu">

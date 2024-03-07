@@ -44,9 +44,9 @@ canEdit?: boolean = false
     this.YoutrackService.getManageUsersStats()
     .subscribe({
       next: (response) =>{
+        this.data = response;
         this.getuserProfileData(); //get the current logged in user to check for permissions
         this.getAllUserTransactions()
-        this.data = response;
         this.currency = this.data.users[0].currencyType;
         //creating pie chart data
         this.piechartData?.push({name:'Current Bal', color: 'green',y: response.totalAmounts.currentAmount})
@@ -62,7 +62,7 @@ canEdit?: boolean = false
       },
       error: (response)=>{
        this.response = response;
-       console.log(this.response.message);
+       console.log(response);
       }
     })
     
@@ -74,6 +74,9 @@ canEdit?: boolean = false
       next: (response) =>{
        this.allUserTransactions = response;
        this.allUserTransactions.transactions.reverse();
+      },
+      error: (response) =>{
+        console.log(response);
       }
     })
   }
