@@ -192,9 +192,11 @@ input[type="search"]{
 }
 
 .create_user{
+    position: absolute;
+    top: 10.5%;
     background-color: white;
-    height: 600px;
-    width: 500px;
+    height: 535px;
+    width: 420px;
     border-radius: 1em;
 }
 .edit_user{
@@ -210,7 +212,7 @@ form{
 }
 input{
     width: 95%;
-    padding: 8px;
+    padding: 6px;
     border: 2px solid rgba(168, 255, 160, 0.921);
     border-radius: 5px;
     outline: none;
@@ -231,8 +233,9 @@ input{
 .permission_card{
     padding-left: 25px;
     width: 100%;
-    height: 80px;
+    height: 70px;
 }
+
 .level_1, .level_2, .level_2e{
     display: flex;
     align-items: center;
@@ -377,11 +380,11 @@ input{
 
        .create_user{
         background-color: white;
-        height: 600px;
+        height: 520px;
         width: 80%;
         border-radius: 1em;
         position: absolute;
-        top: 6%;
+        top: 3%;
     }
 
     .edit_user{

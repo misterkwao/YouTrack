@@ -11,7 +11,7 @@ const {
     deleteLoggedUserData,
     getAllProfiles,
     editSpecifiedUserRecord,
-    getAllTransactions, } = require('../controllers/usersDataCtrl');
+    getAllTransactions, } = require('../controllers/usersDataCtrl');  
 const { addIncExp, getUserIncExp,updateIncExpData,deleteUserRecord} = require('../controllers/IncExpDataCtrl');
 
 router.route('/').get(UserProfile).patch(updateProfilePic,updateLoggedUserData);
