@@ -200,8 +200,10 @@ input[type="search"]{
     border-radius: 1em;
 }
 .edit_user{
+    position: absolute;
+    top: 20%;
     background-color: white;
-    height: 400px;
+    height: 300px;
     width: 500px;
     border-radius: 1em;
 }
@@ -247,6 +249,11 @@ input{
     align-items: center;
 }
 
+.permission_card .level_2e ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 /* .level_1, .level_2, .level_2e{
     display: flex;
     align-items: center;
